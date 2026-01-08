@@ -2,7 +2,7 @@ import os
 import sys
 import numpy as np
 import pandas as pd
-import pickle
+import dill
 from src.exception import CustomException
 from sklearn.model_selection import GridSearchCV, StratifiedKFold
 from sklearn.metrics import (
@@ -16,7 +16,7 @@ def save_object(file_path: str, obj):
         os.makedirs(dir_path, exist_ok=True)
 
         with open(file_path, "wb") as file_obj:
-            pickle.dump(obj, file_obj)
+            dill.dump(obj, file_obj)
 
     except CustomException as err:
         raise CustomException(error_message=err, error_detail=sys)
@@ -24,7 +24,7 @@ def save_object(file_path: str, obj):
 def load_object(file_path: str):
     try:
         with open(file_path, "rb") as file_obj:
-            return pickle.load(file=file_obj)
+            return dill.load(file=file_obj)
     except CustomException as err:
         raise CustomException(error_message=err, error_detail=sys)
 

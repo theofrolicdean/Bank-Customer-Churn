@@ -135,7 +135,7 @@ class ModelTrainer:
             best_model = models[best_model_name]
             if best_model_name < best_score_threshold:
                 raise CustomException("No best model found")
-            logging.info(f"Best model found on training: {best_model_name}, score: {best_model_score} ")
+            logging.info(f"Best model found on training: {best_model_name}, score: {best_model_score}")
 
             save_object(file_path=self.model_trainer_config.trained_model_file_path,
                         obj=best_model)
@@ -144,6 +144,6 @@ class ModelTrainer:
             predicted_eval = get_evaluation_report(y_test=y_test, y_pred=predicted)
             
             return predicted_eval
-
+    
         except Exception as err:
             raise CustomException(error_message=err, error_detail=sys)
