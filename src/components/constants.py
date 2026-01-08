@@ -1,0 +1,1 @@
+ARTIFACTS_PATH = "artifacts/"

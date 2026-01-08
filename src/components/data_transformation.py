@@ -15,7 +15,7 @@ ARTIFACTS_PATH = "artifacts/"
 
 @dataclass
 class DataTransformationConfig:
-    preprocessor_obj_file_path = os.path.join(ARTIFACTS_PATH, "preprocessor.pkl")
+    preprocessor_obj_file_path: str = os.path.join(ARTIFACTS_PATH, "preprocessor.pkl")
 
 class DataTransformation:
     def __init__(self):
