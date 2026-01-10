@@ -1,0 +1,150 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+    background: radial-gradient(circle at top, #e9f0ff, #d8e2f1);
+    color: #1f2d3d;
+}
+
+.page {
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.header p {
+    font-size: 14px;
+    color: #5b6b82;
+}
+
+/* Card */
+.card {
+    max-width: 520px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 25px 50px rgba(31, 79, 216, 0.12);
+}
+
+/* Form */
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+}
+
+.field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: #34495e;
+}
+
+.field input,
+.field select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #d6deeb;
+    font-size: 15px;
+    background: #ffffff;
+}
+
+.field input:focus,
+.field select:focus {
+    outline: none;
+    border-color: #1f4fd8;
+    box-shadow: 0 0 0 3px rgba(31, 79, 216, 0.12);
+}
+
+.full {
+    grid-column: span 1;
+}
+
+/* Button */
+.primary-btn {
+    margin-top: 10px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #1f4fd8, #3a7bd5);
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 24px rgba(31, 79, 216, 0.35);
+}
+
+/* Result */
+.result {
+    margin-top: 24px;
+    padding: 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f4f7ff, #eef3ff);
+    border-left: 5px solid #1f4fd8;
+    text-align: center;
+}
+
+.result span {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7c93;
+}
+
+.result h2 {
+    margin-top: 6px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Footer */
+footer {
+    margin-top: 28px;
+    text-align: center;
+    font-size: 12px;
+    color: #7a8aa1;
+}
+
+/* Tablet & Desktop */
+@media (min-width: 768px) {
+    .card {
+        max-width: 800px;
+        padding: 40px;
+    }
+
+    form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .full,
+    .primary-btn,
+    .result {
+        grid-column: span 2;
+    }
+
+    .header h1 {
+        font-size: 28px;
+    }
+}

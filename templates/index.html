@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank Churn Prediction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="page">
+
+    <div class="header">
+        <h1>Customer Churn Intelligence</h1>
+        <p>Advanced retention prediction for banking customers</p>
+    </div>
+
+    <div class="card">
+        <form method="POST">
+
+            <div class="field">
+                <label>Bank Join Quarter</label>
+                <input type="number" name="bank_quarter" required>
+            </div>
+
+            <div class="field">
+                <label>Credit Score</label>
+                <input type="number" name="credit_score" required>
+            </div>
+
+            <div class="field">
+                <label>Country</label>
+                <select name="country" required>
+                    <option value="">Select country</option>
+                    <option>France</option>
+                    <option>Germany</option>
+                    <option>Spain</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Gender</label>
+                <select name="gender" required>
+                    <option value="">Select gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Age</label>
+                <input type="number" name="age" required>
+            </div>
+
+            <div class="field">
+                <label>Tenure (Years)</label>
+                <input type="number" name="tenure" required>
+            </div>
+
+            <div class="field">
+                <label>Account Balance</label>
+                <input type="number" step="0.01" name="balance" required>
+            </div>
+
+            <div class="field">
+                <label>Number of Products</label>
+                <input type="number" name="products" required>
+            </div>
+
+            <div class="field">
+                <label>Has Credit Card</label>
+                <select name="has_card" required>
+                    <option value="">Select</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Active Status</label>
+                <select name="is_active" required>
+                    <option value="">Select</option>
+                    <option value="1">Active</option>
+                    <option value="0">Inactive</option>
+                </select>
+            </div>
+
+            <div class="field full">
+                <label>Estimated Salary (EUR)</label>
+                <input type="number" step="0.01" name="salary" required>
+            </div>
+
+            <button type="submit" class="primary-btn">
+                Predict Churn Risk
+            </button>
+        </form>
+
+        {% if prediction %}
+        <div class="result">
+            <span>Prediction Result</span>
+            <h2>{{ prediction }}</h2>
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        © Bank Analytics Platform
+    </footer>
+
+</div>
+
+</body>
+</html>
