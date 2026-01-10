@@ -19,14 +19,14 @@ def save_object(file_path: str, obj):
             dill.dump(obj, file_obj)
 
     except CustomException as err:
-        raise CustomException(error_message=err, error_detail=sys)
+        raise CustomException(error_message=str(err), error_detail=sys)
 
 def load_object(file_path: str):
     try:
         with open(file_path, "rb") as file_obj:
             return dill.load(file=file_obj)
     except CustomException as err:
-        raise CustomException(error_message=err, error_detail=sys)
+        raise CustomException(error_message=str(err), error_detail=sys)
 
 def get_evaluation_report(y_test, y_pred) -> dict:
     return {
@@ -43,22 +43,22 @@ def train_and_evaluate_model(X_train: pd.DataFrame, y_train: pd.DataFrame,
         report = {}
 
         for i in range(len(models)):
-            model_name = list(model.keys())[i]
-            model = list(model.values())[i]
-            model_param = param[list(model.keys())[i]]
+            model = list(models.values())[i]
+            model_name = list(models.keys())[i]
+            model_param = param[list(models.keys())[i]]
             cv_k_fold = StratifiedKFold(n_splits=cv, shuffle=True, random_state=42)
             grid_search_cv = GridSearchCV(estimator=model,
                                           param_grid=model_param, cv=cv_k_fold,
-                                          scoring="recall")
-            
+                                          scoring="recall_macro")
+            print(f"Training {model_name}, params: {model_param}\n")
             grid_search_cv.fit(X_train, y_train)
-            model.set_params(**grid_search_cv.best_params_)
-            model.fit(X_train, y_train)
-            
-            #y_train_pred = model.predict(X_train)
-            y_test_pred = model.predict(X_test)
-            report[model_name] = get_evaluation_report(y_test=y_test,
-                                                       y_pred=y_test_pred)
+            best_model = grid_search_cv.best_estimator_
+            #y_train_pred = best_model.predict(X_train)
+            y_test_pred = best_model.predict(X_test)
+            report[model_name] = {
+                "metrics": get_evaluation_report(y_test, y_test_pred),
+                "model": best_model
+            }
 
         return report
 
