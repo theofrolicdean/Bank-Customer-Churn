@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <title>Bank Churn Prediction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
 
@@ -20,11 +18,10 @@
     </div>
 
     <div class="card">
-        <form method="POST">
-
+        <form action="/predict" method="POST">
             <div class="field">
-                <label>Bank Join Quarter</label>
-                <input type="number" name="bank_quarter" required>
+                <label>Bank Join Date</label>
+                <input type="date" name="bank_join_date" required>
             </div>
 
             <div class="field">
@@ -54,11 +51,6 @@
             <div class="field">
                 <label>Age</label>
                 <input type="number" name="age" required>
-            </div>
-
-            <div class="field">
-                <label>Tenure (Years)</label>
-                <input type="number" name="tenure" required>
             </div>
 
             <div class="field">

@@ -2,29 +2,32 @@ import os
 import sys
 import pandas as pd
 from src.exception import CustomException
-from src.components.constants import *
-from src.utils import *
+from src.components.constants import ARTIFACTS_PATH
+from src.utils import load_object
+
 
 class PredictPipeline:
     def __init__(self):
         pass
 
-    def predict(self, features):
+    def predict(self, features: pd.DataFrame):
         try:
             model_path = os.path.join(ARTIFACTS_PATH, "model.pkl")
             preprocessor_path = os.path.join(ARTIFACTS_PATH, "preprocessor.pkl")
-            print("Before loading")
             model = load_object(file_path=model_path)
             preprocessor = load_object(file_path=preprocessor_path)
-            print("After loading")
-            df_scaled = preprocessor.transform(features)
-            pred = model.predict(df_scaled)
-            return pred 
+            data_transformed = preprocessor.transform(features)
+            prediction = model.predict(data_transformed)
+
+            return prediction
+
         except Exception as err:
             raise CustomException(error_message=err, error_detail=sys)
 
+
 class CustomData:
-    def __init__(self, 
+    def __init__(
+        self,
         bank_quarter: int,
         credit_score: int,
         country: str,
@@ -35,7 +38,8 @@ class CustomData:
         number_of_products: int,
         has_credit_card: str,
         active_status: str,
-        estimated_salary_eur: float):
+        estimated_salary_eur: float
+    ):
         self.bank_quarter = bank_quarter
         self.credit_score = credit_score
         self.country = country
@@ -54,15 +58,17 @@ class CustomData:
                 "Bank_Quarter": [self.bank_quarter],
                 "Credit_Score": [self.credit_score],
                 "Country": [self.country],
+                "Gender": [self.gender],
                 "Age": [self.age],
                 "Tenure_Years": [self.tenure_years],
                 "Account_Balance": [self.account_balance],
+                "Number_Of_Products": [self.number_of_products],
                 "Has_Credit_Card": [self.has_credit_card],
                 "Active_Status": [self.active_status],
-                "Estimated_Salary_EUR": [self.estimated_salary_euf]
+                "Estimated_Salary_EUR": [self.estimated_salary_eur]
             }
-            return pd.DataFrame(input_dict) 
-        except Exception as err:
-            raise CustomException(error_message=str(err), error_detail=sys)
 
-        
+            return pd.DataFrame(input_dict)
+
+        except Exception as err:
+            raise CustomException(error_message=err, error_detail=sys)
