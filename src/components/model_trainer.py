@@ -45,11 +45,11 @@ class ModelTrainer:
             models = {
                 "Logistic Regression": LogisticRegression(n_jobs=-1),
                 "KNN": KNeighborsClassifier(n_jobs=-1),
-                # "Decision Tree": DecisionTreeClassifier(random_state=42),
-                # "Random Forest": RandomForestClassifier(random_state=42, n_jobs=-1),
-                # "AdaBoost": AdaBoostClassifier(random_state=42),
-                # "XGBoost": XGBClassifier(random_state=42),
-                # "CatBoost": CatBoostClassifier(verbose=False, random_state=42)
+                "Decision Tree": DecisionTreeClassifier(random_state=42),
+                "Random Forest": RandomForestClassifier(random_state=42, n_jobs=-1),
+                "AdaBoost": AdaBoostClassifier(random_state=42),
+                "XGBoost": XGBClassifier(random_state=42),
+                "CatBoost": CatBoostClassifier(verbose=False, random_state=42)
             }
             param_grids = {
                 "Logistic Regression": {
@@ -63,38 +63,38 @@ class ModelTrainer:
                     "weights": ["uniform", "distance"]
                 },
 
-                # "Decision Tree": {
-                #     "max_depth": [None, 10, 30],
-                #     "min_samples_split": [2, 10],
-                #     "criterion": ["gini"]
-                # },
+                "Decision Tree": {
+                    "max_depth": [None, 10, 30],
+                    "min_samples_split": [2, 10],
+                    "criterion": ["gini"]
+                },
 
-                # "Random Forest": {
-                #     "n_estimators": [100, 300],
-                #     "max_depth": [None, 20],
-                #     "min_samples_leaf": [1, 2],
-                #     "max_features": ["sqrt"]
-                # },
+                "Random Forest": {
+                    "n_estimators": [100, 300],
+                    "max_depth": [None, 20],
+                    "min_samples_leaf": [1, 2],
+                    "max_features": ["sqrt"]
+                },
 
-                # "AdaBoost": {
-                #     "n_estimators": [100, 200],
-                #     "learning_rate": [0.05, 0.1]
-                # },
+                "AdaBoost": {
+                    "n_estimators": [100, 200],
+                    "learning_rate": [0.05, 0.1]
+                },
 
-                # "XGBoost": {
-                #     "n_estimators": [200],
-                #     "max_depth": [3, 5],
-                #     "learning_rate": [0.05, 0.1],
-                #     "subsample": [0.8],
-                #     "colsample_bytree": [0.8]
-                # },
+                "XGBoost": {
+                    "n_estimators": [200],
+                    "max_depth": [3, 5],
+                    "learning_rate": [0.05, 0.1],
+                    "subsample": [0.8],
+                    "colsample_bytree": [0.8]
+                },
 
-                # "CatBoost": {
-                #     "iterations": [300],
-                #     "depth": [6, 8],
-                #     "learning_rate": [0.05],
-                #     "l2_leaf_reg": [3]
-                # }
+                "CatBoost": {
+                    "iterations": [300],
+                    "depth": [6, 8],
+                    "learning_rate": [0.05],
+                    "l2_leaf_reg": [3]
+                }
             }
 
 
